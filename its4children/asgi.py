@@ -1,5 +1,5 @@
 """
-ASGI config for itsforchildren project.
+ASGI config for its4children project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'itsforchildren.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'its4children.settings')
 
 application = get_asgi_application()
