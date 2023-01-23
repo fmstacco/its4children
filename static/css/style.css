@@ -9,14 +9,14 @@
 
 
 body {
-    background-color: #F9FAFC;
+    background-color: #f7f6f5;
 }
 
 .brand {
-    font-family: Lato, sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #4A4A4F;
+    color: #222d44;
 }
 
 .red-o {
@@ -28,15 +28,15 @@ body {
 }
 
 .light-bg {
-    background-color: #fff;
+    background-color: #f7f6f5;
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: #222d44;
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #f7f6f5;
 }
 
 .card {
