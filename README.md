@@ -40,6 +40,8 @@ Welcome to the live site here: <a href="https://its4children.herokuapp.com/" tar
 *  [**Acknowledgements**](<#acknowledgements>)
 
 
+## User Stories
+
 
 
 
@@ -56,7 +58,7 @@ Welcome to the live site here: <a href="https://its4children.herokuapp.com/" tar
 
  * ### Typography
  
- The source used throughout the site is Montserrat, as it is a nice font, elegant and, also conveys confidence and professionalism. It is very good for UX/UI for having good readability on any device, large x-heigh and, is also good for accessibility. 
+ The typography used throughout the site is Montserrat, as it is a nice font, elegant and, also conveys confidence and professionalism. It is very good for UX/UI for having good readability on any device, large x-heigh and, is also good for accessibility. 
 
  * ### Colour Scheme
 
