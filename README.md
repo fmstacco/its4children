@@ -46,8 +46,23 @@ Welcome to the live site here: <a href="https://its4children.herokuapp.com/" tar
 
 
 
+## Design Choices
 
+ * ### Logo
 
+ The logo was designed on [Canva](https://www.canva.com/en_gb/) version Pro. A painted children hands icon was chosen to convey the core concept of children playing and also a community ethos. 
+
+![Its4children logo](./documentation/readme-images/Its4children-logo.png) 
+
+ * ### Typography
+ 
+ The source used throughout the site is Montserrat, as it is a nice font, elegant and, also conveys confidence and professionalism. It is very good for UX/UI for having good readability on any device, large x-heigh and, is also good for accessibility. 
+
+ * ### Colour Scheme
+
+Colour Palette image
+
+<img src="./documentation/readme-images/color-palette.jpg" alt="Colour Palette image">
 
 
 # Acknowledgements
