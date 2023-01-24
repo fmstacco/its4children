@@ -1,8 +1,16 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from django.views import generic, View
+from django.views import generic
+from django.views.generic import View, CreateView
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse_lazy
+
+
+def index(request):
+    """ Returns index.html """
+    return render(request, 'index.html')
 
 
 class PostList(generic.ListView):
@@ -12,12 +20,18 @@ class PostList(generic.ListView):
     paginate_by = 6
 
 
-class PostDetail(View):
+class PostDetail(LoginRequiredMixin, View):
+    """
+    Displays detail post
+    """
 
     def get(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
+        """
+        Gets detailed post
+        """
+        queryset = Post.objects
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("-created_on")
+        comments = post.comments.order_by("created_on")
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -36,14 +50,15 @@ class PostDetail(View):
     
     def post(self, request, slug, *args, **kwargs):
 
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("-created_on")
+        comments = post.comments.order_by("created_on")
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
 
         comment_form = CommentForm(data=request.POST)
+
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
             comment_form.instance.name = request.user.username
@@ -76,3 +91,21 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+class AddPostView(LoginRequiredMixin, CreateView):
+    """
+    Logged in user can add a post
+    """
+    model = Post
+    template_name = 'add_post.html'
+    fields = ['title', 'content', 'featured_image']
+
+    def form_valid(self, form):
+        """
+        sets logged in user as author in form
+        """
+        form.instance.author = self.request.user
+        messages.success(
+            self.request, 'You have successfully created a Location Post')
+        return super(PostCreate, self).form_valid(form)
