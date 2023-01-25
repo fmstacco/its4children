@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
-from django.views.generic import View, CreateView
+from django.views.generic import View, CreateView, UpdateView
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from .models import Post
 from .forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -9,14 +10,16 @@ from django.urls import reverse_lazy
 
 
 def index(request):
-    """ Returns index.html """
+    """
+    Renders the index page
+    """
     return render(request, 'index.html')
 
 
 class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
-    template_name = "index.html"
+    template_name = "post_list.html"
     paginate_by = 6
 
 
@@ -107,5 +110,16 @@ class AddPostView(LoginRequiredMixin, CreateView):
         """
         form.instance.author = self.request.user
         messages.success(
-            self.request, 'You have successfully created a Location Post')
-        return super(PostCreate, self).form_valid(form)
+            self.request, 'You have successfully created a activity idea')
+        return super(AddPostView, self).form_valid(form)
+
+
+class UpdatePost(UpdateView):
+    model = Post
+    fields = ['title', 'content', 'featured_image']
+    template_name = 'update_post.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(UpdatePost, self).form_valid(form)

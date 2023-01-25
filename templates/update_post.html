@@ -2,16 +2,16 @@
 {% load static %}
 
 {% block content %} 
+{% load crispy_forms_tags %}
 
 <div class="container">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-            <h2>Add Activity Idea</h2>
-            <p>Detail the activity idea for children</p>
+            <h2>Update Activity Idea</h2>
             <form method="POST" enctype="multipart/form-data">
                 {{ form.as_p }}
                 {% csrf_token %} 
-                <input type="submit" value="Add Post" class="btn btn-lg btn-outline-dark">
+                <input type="submit" value="Update" class="btn btn-lg">
             </form>
         </div>
     </div>
